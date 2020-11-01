@@ -1,0 +1,20 @@
+{
+  "name": "vue_core_study",
+  "version": "1.0.0",
+  "description": "vue源码学习",
+  "main": "index.js",
+  "scripts": {
+    "build:dev":"rollup -c",
+    "serve":"cross-env ENV=development rollup -c -w"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "cross-env": "^7.0.2",
+    "rollup": "^2.33.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-serve": "^1.0.4"
+  }
+}
