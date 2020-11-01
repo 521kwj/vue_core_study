@@ -9,8 +9,22 @@
   <script src='/dist/umd/vue.js'></script>
   <script>
     let vm = new Vue({
-      el:'#app'
+      el:'#app',
+      data(){
+        return {
+          name:'pst',
+          age:25,
+          address:{
+            addre:'南京市',
+            phone:'18856049670'
+          },
+          personArr:[{name:'pst',age:24},{name:'pst',age:24}]
+        }
+      }
     })
+    // vm._data.address = {a:'lalal'}
+    vm._data.personArr.push({name:'lm'})
+    console.log(vm._data)
   </script>
 </body>
 </html>
