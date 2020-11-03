@@ -6,6 +6,11 @@
   <title>Document</title>
 </head>
 <body>
+  <div id='app'>
+    <p>{{name}}</p>
+    <p>{{age}}</p>
+  </div>
+
   <script src='/dist/umd/vue.js'></script>
   <script>
     let vm = new Vue({
@@ -23,8 +28,8 @@
       }
     })
     // vm._data.address = {a:'lalal'}
-    vm._data.personArr.push({name:'lm'})
-    console.log(vm._data)
+    // vm._data.personArr.push({name:'lm'})
+    // console.log(vm._data)
   </script>
 </body>
 </html>

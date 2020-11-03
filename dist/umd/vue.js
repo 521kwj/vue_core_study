@@ -195,12 +195,70 @@
     oberver(data);
   }
 
+  /*
+    ast语法树 是用对象来描述原生语法的
+    虚拟dom 用对象来描述dom节点的
+
+    <div id='app'>
+      <p>hello</p>
+    </div>
+    //将这段代码转为ast
+    let root = {
+      tag:'div',
+      attrs:[{name:'id',value:'app'}],
+      parent:null,
+      type:1, //元素类型
+      children:[
+        {
+          tag:'p',
+          attrs:[],
+          parent:root,
+          type:1,
+          children:[
+            {
+              text:'hello',
+              type:'3'
+            }
+          ]
+        }
+      ]
+    }
+  */
+  function compileToFunction(template) {
+    return function render() {};
+  }
+
   function initMixin(Vue) {
     //初始化流程
     Vue.prototype._init = function (options) {
       var vm = this;
       vm.$options = options;
-      initState(vm);
+      initState(vm); //如果用户传入了el属性，需要将页面渲染出来
+      //如果用户传入el,就要实现挂载流程
+
+      if (vm.$options.el) {
+        vm.$mount(vm.$options.el);
+      }
+    }; //挂载属性
+
+
+    Vue.prototype.$mount = function (el) {
+      var vm = this;
+      var options = vm.$options;
+      el = document.querySelector(el); //默认先回查找render方法，如果没有render方法会采用template,没有template会采用el的内容
+
+      if (!options.render) {
+        //对模板进行编译
+        var _template = options.template;
+
+        if (!_template && el) {
+          //如果用户没有传template,但是传了el
+          _template = el.outerHTML;
+        }
+      } //我们需要将template转化为render方法
+
+
+      var render = compileToFunction(template);
     };
   }
 
